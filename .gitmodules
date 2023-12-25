@@ -1,3 +1,0 @@
-[submodule ".dotfiles/.config"]
-	path = .dotfiles/.config
-	url = https://github.com/rslangl/nvim.git
