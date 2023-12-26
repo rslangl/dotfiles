@@ -13,7 +13,7 @@ order += "battery all"
 order += "disk /"
 order += "cpu_usage"
 order += "memory"
-order += "tztime local"
+order += "time"
 
 wireless _first_ {
     format_up = "W: (%quality at %essid) %ip"
@@ -43,4 +43,8 @@ cpu_usage {
 memory {
     format = "Mem: %used/%total"
     threshold_degraded = "1G"
+}
+
+time {
+  format = "%Y-%m-%d %H:%M:%S"
 }
