@@ -1,0 +1,31 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- create:
+    $HOME/sources:
+      mode: 0700
+    $XDG_CONFIG_HOME/i3:
+      mode: 0755
+    $XDG_CONFIG_HOME/i3status:
+      mode: 0755
+    $HOME/workspace:
+      mode: 0700
+
+- link:
+    ~/.zshenv: zsh/zshenv
+    ~/.zprofile: zsh/zprofile
+    ~/.zshrc: zsh/zshrc
+    ~/.Xdefaults: X11/xresources
+    ~/.xinitrc: X11/xinitrc
+    ~/.xserverrc: X11/xserverrc
+    $XDG_CONFIG_HOME/i3/config: i3/config
+    $XDG_CONFIG_HOME/i3status/config: i3status/config
+      #$XDG_CONFIG_HOME/nvim/init.lua: nvim/init.lua
+      #$XDG_CONFIG_HOME/nvim/lua: nvim/lua
+      #$XDG_CONFIG_HOME/nvim/after: nvim/after
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]

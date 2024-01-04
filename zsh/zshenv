@@ -1,0 +1,33 @@
+typeset -U PATH path
+
+# XDG paths
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
+
+# XDG system directories
+export XDG_DATA_DIRS=${XDG_DATA_DIRS:="/usr/local/share:/usr/share"}
+export XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:="/etc/xdg"}
+
+# Disable files
+export LESSHISTFILE=-
+
+# Paths
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+export GOPATH="$XDG_DATA_HOME"/go
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+export HISTFILE="$XDG_CONFIG_HOME"/zsh/history
+
+# Default apps
+export EDITOR="nvim"
+export VISUAL="nvim"
+export TERMINAL="rxvt-unicode"
+export BROWSER="firefox"
+
+# Path
+path=("$HOME/.local/bin", "$GOPATH/bin", "$path[@]")
+
+export PATH

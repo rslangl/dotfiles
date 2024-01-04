@@ -1,0 +1,50 @@
+general {
+    colors = true
+    color_good = "#a3be8c"
+    color_degraded = "#ebcb8b"
+    color_bad = "#bf6a6a"
+    interval = 1
+    separator = "|"
+}
+
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "battery all"
+order += "disk /"
+order += "cpu_usage"
+order += "memory"
+order += "time"
+
+wireless _first_ {
+    format_up = "W: (%quality at %essid) %ip"
+    format_down = "W: down"
+}
+
+ethernet _first_ {
+    format_up = "ETH: %ip (%speed)"
+    format_down = "ETH: down"
+}
+
+battery all {
+    format = "Btt: %status %percentage %remaining"
+    low_threshold = 10
+}
+
+disk "/" {
+    format = "/: %percentage_used"
+}
+
+cpu_usage {
+    format = "CPU: %usage"
+    degraded_threshold = 90
+    max_threshold = 95
+}
+
+memory {
+    format = "Mem: %used/%total"
+    threshold_degraded = "1G"
+}
+
+time {
+  format = "%Y-%m-%d %H:%M:%S"
+}
