@@ -11,6 +11,8 @@
       mode: 0755
     $XDG_CONFIG_HOME/i3status:
       mode: 0755
+    $XDG_CONFIG_HOME/ranger:
+      mode: 0755
     $HOME/workspace:
       mode: 0700
 
@@ -23,6 +25,11 @@
     ~/.xserverrc: X11/xserverrc
     $XDG_CONFIG_HOME/i3/config: i3/config
     $XDG_CONFIG_HOME/i3status/config: i3status/config
+    $XDG_CONFIG_HOME/ranger/rc.conf: ranger/rc.conf
+    $XDG_CONFIG_HOME/ranger/commands.py: ranger/commands.py
+    $XDG_CONFIG_HOME/ranger/commands_full.py: ranger/commands_full.py
+    $XDG_CONFIG_HOME/ranger/rifle.conf: ranger/rifle.conf
+    $XDG_CONFIG_HOME/ranger/scope.sh: ranger/scope.sh
       #$XDG_CONFIG_HOME/nvim/init.lua: nvim/init.lua
       #$XDG_CONFIG_HOME/nvim/lua: nvim/lua
       #$XDG_CONFIG_HOME/nvim/after: nvim/after
