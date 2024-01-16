@@ -7,12 +7,12 @@
 # invoke global X session script
 . /etc/X11/Xsession
 
-# set background image
-#xsetbg -fullscreen "$HOME"/Pictures/wallpapers/astartes.jpg &
-feh --bg-scale $HOME/Pictures/wallpaper/astartes.jpg
-
 # start terminal emulator
 /usr/bin/X11/rxvt-unicode &
 
 # start window manager
 exec /etc/alternatives/x-window-manager
+
+# set background image
+#feh --bg-fill $HOME/Pictures/wallpaper/astartes.jpg
+

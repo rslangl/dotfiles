@@ -1,8 +1,0 @@
-#!/usr/bin/zsh
-
-set -e
-
-git clone https://github.com/ryanoasis/nerd-fonts --depth 1 $HOME/sources/nerd-fonts
-pushd $HOME/sources
-./install.sh DejaVuSansMono, JetBrainsMono, Iosevka, Inconsolata
-popd

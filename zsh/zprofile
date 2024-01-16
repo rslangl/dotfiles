@@ -1,5 +1,38 @@
-#!/usr/bin/env sh
+##!/usr/bin/env sh
 
+# launch X11
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
 	exec startx
 fi
+
+# NOTE: moved to i3
+# load X11 config from custom path
+#xrdb -load $HOME/.config/X11/xresources
+
+# set pahts
+export WGETRC="$XDG_CONFIG_HOME"/wget/WGETRC
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep
+
+# instruct NVIDIA to use custom path
+if [ "$(command -v nvidia-setting &> /dev/null)" ];
+then
+  nvidia-setting --config="$XDG_CONFIG_HOME"/nvidia/settings
+fi
+
+# instruct sbt to use custom path
+if [ "$(command -v sbt --version &> /dev/null)" ];
+then
+  sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt
+fi
+
+# instruct w3m to use custom path
+if [ "$(command -v w3m --version &> /dev/null)" ];
+then
+  export W3M_DIR="$XDG_STATE_HOME"/w3m
+fi
+
+# default apps
+export EDITOR="nvim"
+export VISUAL="nvim"
+export TERMINAL="rxvt-unicode"
+export BROWSER="firefox"

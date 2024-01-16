@@ -23,6 +23,12 @@ font pango:DejaVu Sans Mono 10
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+# Include Xresources for rxvt-unicode configuration
+exec --no-startup-id xrdb -merge $XDG_CONFIG_HOME/X11/xresources
+
+# Set background image
+exec feh --bg-fill $HOME/Pictures/wallpaper/astartes.jpg
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
