@@ -7,7 +7,7 @@
 - create:
     $HOME/sources:
       mode: 0700
-    $HOME/X11:
+    $XDG_CONFIG_HOME/X11:
       mode: 0700
     $XDG_CONFIG_HOME/i3:
       mode: 0755
@@ -19,7 +19,8 @@
       mode: 0700
 
 - link:
-    /etc/zsh/zshenv: zsh/zshenv
+  #/etc/zsh/zshenv: zsh/zshenv
+    $ZDOTDIR/zshenv: zsh/zshenv
     $ZDOTDIR/zprofile: zsh/zprofile
     $ZDOTDIR/zshrc: zsh/zshrc
     $XDG_CONFIG_HOME/X11/xresources: X11/xresources
@@ -38,11 +39,3 @@
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
-    - [curl -fsSL -o sources/cmake https://github.com/Kitware/CMake/releases/download/v3.28.1/cmake-3.28.1.tar.gz && cd $HOME/sources/cmake && ./bootstrap && make && sudo make install]
-    - [sudo apt install luajit gcc g++ clangd gdb]
-    - [git clone https://github.com/neovim/neovim $HOME/sources/neovim && cd $HOME/sources/neovim && make CMAKE_BUILD_TYPE=Release && sudo make install]
-#    - [git clone clone https://github.com/ryanoasis/nerd-fonts --depth 1 nerd-fonts]
-#pushd $HOME/sources
-#./install.sh DejaVuSansMono, JetBrainsMono, Iosevka, Inconsolata
-#popd
-
