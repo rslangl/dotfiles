@@ -4,20 +4,20 @@ then
 fi
 
 # dotfiles
-export DOTFILES="$HOME/.dotfiles"
+#export DOTFILES="$HOME/.dotfiles"
 
 # XDG paths
-export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
-export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
+#export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+#export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+#export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+#export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 
 # XDG system directories
-export XDG_DATA_DIRS=${XDG_DATA_DIRS:="/usr/local/share:/usr/share"}
-export XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:="/etc/xdg"}
+#export XDG_DATA_DIRS=${XDG_DATA_DIRS:="/usr/local/share:/usr/share"}
+#export XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:="/etc/xdg"}
 
 # NVIDIA driver
-export __NV_PRIME_RENDER_OFFLOAD=1
+#export __NV_PRIME_RENDER_OFFLOAD=1
 
 # zsh
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
@@ -39,3 +39,30 @@ export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 # GnuPG
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 
+# Set other pahts
+export WGETRC="$XDG_CONFIG_HOME"/wget/WGETRC
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep
+
+# instruct NVIDIA to use custom path
+if [ "$(command -v nvidia-setting &> /dev/null)" ];
+then
+  nvidia-setting --config="$XDG_CONFIG_HOME"/nvidia/settings
+fi
+
+# instruct sbt to use custom path
+if [ "$(command -v sbt --version &> /dev/null)" ];
+then
+  sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt
+fi
+
+# instruct w3m to use custom path
+if [ "$(command -v w3m --version &> /dev/null)" ];
+then
+  export W3M_DIR="$XDG_STATE_HOME"/w3m
+fi
+
+# default apps
+export EDITOR="nvim"
+export VISUAL="nvim"
+export TERMINAL="rxvt-unicode"
+export BROWSER="firefox"

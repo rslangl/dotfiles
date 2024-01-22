@@ -5,9 +5,8 @@ if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
 	exec startx
 fi
 
-# NOTE: moved to i3
 # load X11 config from custom path
-#xrdb -load $HOME/.config/X11/xresources
+xrdb -load $HOME/.config/X11/xresources
 
 # set pahts
 export WGETRC="$XDG_CONFIG_HOME"/wget/WGETRC

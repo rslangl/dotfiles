@@ -20,11 +20,12 @@
 
 - link:
   #/etc/zsh/zshenv: zsh/zshenv
-    $ZDOTDIR/zshenv: zsh/zshenv
-    $ZDOTDIR/zprofile: zsh/zprofile
-    $ZDOTDIR/zshrc: zsh/zshrc
-    $XDG_CONFIG_HOME/X11/xresources: X11/xresources
+    $ZDOTDIR/.zshenv: zsh/zshenv
+  #$ZDOTDIR/.zprofile: zsh/zprofile
+    $ZDOTDIR/.zshrc: zsh/zshrc
+  #$XDG_CONFIG_HOME/X11/xresources: X11/xresources
   #$XDG_CONFIG_HOME/X11/xinitrc: X11/xinitrc
+    $HOME/.xinitrc: X11/xinitrc
   #$XDG_CONFIG_HOME/X11/xserverrc: X11/xserverrc
     $XDG_CONFIG_HOME/i3/config: i3/config
     $XDG_CONFIG_HOME/i3status/config: i3status/config
