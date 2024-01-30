@@ -1,0 +1,9 @@
+// /* https://github.com/Sad-Soul-Eater/dotfiles/tree/master/configs/rofi */
+
+configuration {
+  display-drun: "Applications:";
+  display-window: "Windows:";
+  drun-display-format: "{name}";
+  //font: "JetBrainsMono Nerd Font Medium 30";
+  modi: "window,run,drun";
+

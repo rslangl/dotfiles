@@ -15,6 +15,28 @@
       mode: 0755
     $XDG_CONFIG_HOME/ranger:
       mode: 0755
+    $XDG_DATA_HOME/gnupg:
+      mode: 0755
+    $XDG_CONFIG_HOME/nvidia/settings:
+      mode: 0755
+    $XDG_CONFIG_HOME/rofi:
+      mode: 0755
+    $XDG_CONFIG_HOME/wget:
+      mode: 0755
+    $XDG_CONFIG_HOME/ripgrep:
+      mode: 0755
+    $XDG_DATA_HOME/ivy2:
+      mode: 0755
+    $XDG_DATA_HOME/sbt:
+      mode: 0755
+    $XDG_STATE_HOME/w3m:
+      mode: 0755
+    $XDG_CONFIG_HOME/npm:
+      mode: 0755
+    $XDG_CONFIG_HOME/docker:
+      mode: 0755
+    $XDG_CONFIG_HOME/ansible:
+      mode: 0755
     $HOME/workspace:
       mode: 0700
 
@@ -34,6 +56,8 @@
     $XDG_CONFIG_HOME/ranger/commands_full.py: ranger/commands_full.py
     $XDG_CONFIG_HOME/ranger/rifle.conf: ranger/rifle.conf
     $XDG_CONFIG_HOME/ranger/scope.sh: ranger/scope.sh
+    $XDG_CONFIG_HOME/rofi/config.rasi: rofi/config.rasi
+    $XDG_CONFIG_HOME/npm/npmrc: npm/npmrc
       #$XDG_CONFIG_HOME/nvim/init.lua: nvim/init.lua
       #$XDG_CONFIG_HOME/nvim/lua: nvim/lua
       #$XDG_CONFIG_HOME/nvim/after: nvim/after
