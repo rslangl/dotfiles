@@ -20,11 +20,10 @@ fi
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 export HISTFILE="$XDG_CONFIG_HOME"/zsh/history
 
-# add local path
-export PATH="$PATH":"$HOME/.local/bin"
-
 # set GO path
 export PATH="$PATH:/usr/local/go/bin"
+export GOPATH="$XDG_DATA_HOME"/go
+export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 
 # xorg-xauth
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
