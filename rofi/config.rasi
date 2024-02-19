@@ -6,4 +6,4 @@ configuration {
   drun-display-format: "{name}";
   //font: "JetBrainsMono Nerd Font Medium 30";
   modi: "window,run,drun";
-
+}

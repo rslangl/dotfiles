@@ -1,7 +1,7 @@
-if [[ -z "$PATH" || "$PATH" == "/bin:/usr/bin" ]]
-then
-	export PATH="/usr/local/bin:/usr/bin:/bin:$HOME/.local/bin"
-fi
+#if [[ -z "$PATH" || "$PATH" == "/bin:/usr/bin" ]]
+#then
+export PATH="$PATH:$HOME/.local/bin"
+#fi
 
 # dotfiles
 #export DOTFILES="$HOME/.dotfiles"
@@ -41,9 +41,29 @@ export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 # GnuPG
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 
-# Set other pahts
+# NPM
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+
+# Ansible
+export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible/ansible.cfg"
+export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/ansible/galaxy_cache"
+
+# Docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+
+# Kubernetes
+export KUBECONFIG="$XDG_CONFIG_HOME/kube" 
+export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
+
+# wget
 export WGETRC="$XDG_CONFIG_HOME"/wget
+
+# ripgrep
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep
+
+# w3m
+export W3M_DIR="$XDG_STATE_HOME"/w3m
 
 # instruct NVIDIA to use custom path
 if [ "$(command -v nvidia-setting &> /dev/null)" ];
@@ -57,33 +77,13 @@ then
   sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt
 fi
 
-# instruct ansible to use custom path
-if [ "$(command -v ansible &> /dev/null)" ];
+# instruct Maven to to use custom path
+if [ "$(command -v mvn &> /dev/null)" ];
 then
-  export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
-  export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible/ansible.cfg"
-  export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/ansible/galaxy_cache"
+  mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml
 fi
 
-# instruct w3m to use custom path
-if [ "$(command -v w3m --version &> /dev/null)" ];
-then
-  export W3M_DIR="$XDG_STATE_HOME"/w3m
-fi
-
-# instruct npm to use custom path
-if [ "$(command -v npm --version &> /dev/null)" ];
-then
-  export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-fi
-
-# instruct docker to use custom path
-if [ "$(command -v docker --version &> /dev/null)" ];
-then
-   	export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
-fi
-
-# default apps
+# Default apps
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="rxvt-unicode"
