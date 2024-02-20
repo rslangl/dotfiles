@@ -43,14 +43,18 @@
       mode: 0755
     $XDG_CONFIG_HOME/kube:
       mode: 0755
+    $XDG_CONFIG_HOME/maven:
+      mode: 0755
     $HOME/projects:
       mode: 0700
 
 - link:
     $ZDOTDIR/.zshenv: zsh/zshenv
     $ZDOTDIR/.zshrc: zsh/zshrc
+    $ZDOTDIR/ohmyzsh/custom/aliases.zsh: zsh/ohmyzsh/custom/aliases.zsh
     $HOME/.xinitrc: X11/xinitrc
     $XDG_CONFIG_HOME/i3/config: i3/config
+    $XDG_CONFIG_HOME/i3/lock: i3/lock
     #$XDG_CONFIG_HOME/i3status/config: i3status/config
     $XDG_CONFIG_HOME/polybar/config: polybar/config
     $XDG_CONFIG_HOME/polybar/launch.sh: polybar/launch.sh
@@ -62,6 +66,7 @@
     $XDG_CONFIG_HOME/rofi/config.rasi: rofi/config.rasi
     $XDG_CONFIG_HOME/rofi/ericmurphyxyz.rasi: rofi/ericmurphyxyz.rasi
     $XDG_CONFIG_HOME/npm/npmrc: npm/npmrc
+    $XDG_CONFIG_HOME/maven/settings.xml: maven/settings.xml
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]

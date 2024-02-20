@@ -10,6 +10,16 @@ zstyle ':omz:update' frequency 14
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 plugins=(git fzf zsh-autosuggestions zsh-syntax-highlighting)
 
+# Setup SSH
+if [ -z "$SSH_AGENT_PID" ]; then
+  eval "$(ssh-agent -s)" &> /dev/null
+  ssh-add $HOME/.ssh/ffi-gitlab &> /dev/null
+  ssh-add $HOME/.ssh/ffilab &> /dev/null
+  ssh-add $HOME/.ssh/github &> /dev/null
+  ssh-add $HOME/.ssh/ist193 &> /dev/null
+  ssh-add $HOME/.ssh/norsetech &> /dev/null
+fi
+
 # Setup zodixe
 eval "$(zoxide init zsh)"
 

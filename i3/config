@@ -211,6 +211,9 @@ bar {
 # Set background image
 exec_always feh --bg-fill --no-fehbg $HOME/Pictures/wallpaper/astartes.jpeg
 
+# Shortcut for lockscreen
+bindsym $mod+x exec $HOME/.config/i3/lock
+
 # Gaps
 gaps inner 5px
 gaps outer 10px
