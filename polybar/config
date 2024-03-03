@@ -11,8 +11,8 @@ purple     = #bd93f9
 cyan       = #8be9fd
 orange     = #ff5555
 pink       = #ff79c6
-grey       = #f7f7f7 ;#8fa6a1
-
+;#8fa6a1
+grey       = #f7f7f7 
 [bar/top]
 monitor = ${env:MONITOR:}
 ; Size

@@ -20,10 +20,14 @@ export PATH="$PATH:$HOME/.local/bin"
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 export HISTFILE="$XDG_CONFIG_HOME"/zsh/history
 
-# set GO path
+# Golang
 export PATH="$PATH:/usr/local/go/bin"
 export GOPATH="$XDG_DATA_HOME"/go
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
+
+# Rust
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 
 # xorg-xauth
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
@@ -89,5 +93,4 @@ fi
 # Default apps
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERMINAL="rxvt-unicode"
-export BROWSER="firefox"
+export TERMINAL="st"

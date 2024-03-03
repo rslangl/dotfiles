@@ -77,8 +77,8 @@
 
 !! URxvt appearance
 URxvt.buffered: true
-URxvt.font: xft:DejaVu Sans Mono:size=10:antialias=true
-URxvt.boldFont: xft:DejaVu Sans Mono:style=Book:size=10:antialias=true
+!URxvt.font: xft:SauceCodePro\ Nerd\ Font:size=12:antialias=true 
+URxvt.font: xft:Monospace:pixelsize=14,xft:Inconsolata\ for\ Powerline:pixelsize=14
 URxvt.transparent: true
 URxvt.shading: 15
 URxvt.letterSpace: -1
@@ -88,8 +88,10 @@ URxvt.saveLines: 8192
 URxvt.mapAlert: true
 URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
-URxvt.scrollstyle: plain
-URxvt.secondaryScroll: true
+URxvt.scrolltyKeypress: true
+!URxvt.scrollstyle: plain
+URxvt.secondaryScreen: 0
+URxvt.secondaryScroll: 1
 
 !! extensions
 URxvt.perl-lib: /usr/lib/x86_64-linux-gnu/urxvt/perl
