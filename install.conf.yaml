@@ -1,8 +1,13 @@
 - defaults:
     link:
       relink: true
+    create:
+      mode: 0755
+    shell:
+      stdout: true
+      stderr: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - create:
     $HOME/src:
@@ -10,41 +15,25 @@
     $HOME/src/github.com:
       mode: 0700
     $XDG_CONFIG_HOME/X11:
-      mode: 0700
     $XDG_CONFIG_HOME/i3:
-      mode: 0755
+    $XDG_CONFIG_HOME/tmux:
     $XDG_CONFIG_HOME/polybar:
-      mode: 0755
     #$XDG_CONFIG_HOME/i3status:
     #    mode: 0755
     $XDG_CONFIG_HOME/ranger:
-      mode: 0755
     $XDG_DATA_HOME/gnupg:
-      mode: 0755
     $XDG_CONFIG_HOME/nvidia/settings:
-      mode: 0755
     $XDG_CONFIG_HOME/rofi:
-      mode: 0755
     $XDG_CONFIG_HOME/wget:
-      mode: 0755
     $XDG_CONFIG_HOME/ripgrep:
-      mode: 0755
     $XDG_DATA_HOME/ivy2:
-      mode: 0755
     $XDG_DATA_HOME/sbt:
-      mode: 0755
     $XDG_STATE_HOME/w3m:
-      mode: 0755
     $XDG_CONFIG_HOME/npm:
-      mode: 0755
     $XDG_CONFIG_HOME/docker:
-      mode: 0755
     $XDG_CONFIG_HOME/ansible:
-      mode: 0755
     $XDG_CONFIG_HOME/kube:
-      mode: 0755
     $XDG_CONFIG_HOME/maven:
-      mode: 0755
     $HOME/projects:
       mode: 0700
 
@@ -55,6 +44,7 @@
     $HOME/.xinitrc: X11/xinitrc
     $XDG_CONFIG_HOME/i3/config: i3/config
     $XDG_CONFIG_HOME/i3/lock: i3/lock
+    $XDG_CONFIG_HOME/tmux/tmux.conf: tmux/tmux.conf
     #$XDG_CONFIG_HOME/i3status/config: i3status/config
     $XDG_CONFIG_HOME/polybar/config: polybar/config
     $XDG_CONFIG_HOME/polybar/launch.sh: polybar/launch.sh
