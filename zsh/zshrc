@@ -23,5 +23,8 @@ fi
 # Setup zodixe
 eval "$(zoxide init zsh)"
 
+# kubectl autocompletion
+source <(kubectl completion zsh)
+
 source $ZSH/oh-my-zsh.sh
 

@@ -1,3 +1,4 @@
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts'
 alias pubip='curl http://ipecho.net/plan; echo'
-alias vi='nvim'
+alias vc='nvim $HOME/.config/nvim'
+alias v='nvim .'
