@@ -12,14 +12,10 @@
 - create:
     $HOME/src:
       mode: 0700
-    $HOME/src/github.com:
-      mode: 0700
     $XDG_CONFIG_HOME/X11:
     $XDG_CONFIG_HOME/i3:
     $XDG_CONFIG_HOME/tmux:
     $XDG_CONFIG_HOME/polybar:
-    #$XDG_CONFIG_HOME/i3status:
-    #    mode: 0755
     $XDG_CONFIG_HOME/ranger:
     $XDG_DATA_HOME/gnupg:
     $XDG_CONFIG_HOME/nvidia/settings:
@@ -45,7 +41,6 @@
     $XDG_CONFIG_HOME/i3/config: i3/config
     $XDG_CONFIG_HOME/i3/lock: i3/lock
     $XDG_CONFIG_HOME/tmux/tmux.conf: tmux/tmux.conf
-    #$XDG_CONFIG_HOME/i3status/config: i3status/config
     $XDG_CONFIG_HOME/polybar/config: polybar/config
     $XDG_CONFIG_HOME/polybar/launch.sh: polybar/launch.sh
     $XDG_CONFIG_HOME/ranger/rc.conf: ranger/rc.conf
