@@ -1,20 +1,4 @@
-#if [[ -z "$PATH" || "$PATH" == "/bin:/usr/bin" ]]
-#then
 export PATH="$PATH:$HOME/.local/bin"
-#fi
-
-# dotfiles
-#export DOTFILES="$HOME/.dotfiles"
-
-# XDG paths
-#export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
-#export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
-#export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
-#export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
-
-# XDG system directories
-#export XDG_DATA_DIRS=${XDG_DATA_DIRS:="/usr/local/share:/usr/share"}
-#export XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:="/etc/xdg"}
 
 # zsh
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
@@ -33,18 +17,21 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 
 # xorg-xauth
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+# NOTE: moved to global zshenv
+# export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
 # xinit
-export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
-export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+# NOTE: moved to global zshenv
+# export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+# export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 
 # Xorg
-export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
-export USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
-export ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
-export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
-
+# NOTE: moved to global zshenv
+# export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
+# export USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
+# export ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
+# export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+#
 # GnuPG
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 
@@ -53,6 +40,13 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 
 # OpenJDK
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+
+# Gradle
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+
+# Vagrant
+export VAGRANT_HOME="${XDG_DATA_HOME}"/vagrant
+export VAGRANT_ALIAS_FILE="${XDG_DATA_HOME}"/vagrant/aliases
 
 # Ansible
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
@@ -76,19 +70,19 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep
 export W3M_DIR="$XDG_STATE_HOME"/w3m
 
 # instruct NVIDIA to use custom path
-if [ "$(command -v nvidia-setting &> /dev/null)" ];
+if command -v nvidia-settings > /dev/null 2>&1;
 then
-  nvidia-setting --config="$XDG_CONFIG_HOME"/nvidia/settings
+  nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
 fi
 
 # instruct sbt to use custom path
-if [ "$(command -v sbt --version &> /dev/null)" ];
+if command -v sbt --version > /dev/null 2>&1;
 then
   sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt
 fi
 
 # instruct Maven to to use custom path
-if [ "$(command -v mvn &> /dev/null)" ];
+if command -v mvn > /dev/null 2>&1;
 then
   mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml
 fi
@@ -97,4 +91,5 @@ fi
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="st"
+
 . "/home/rune/.local/share/cargo/env"

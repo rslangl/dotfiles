@@ -37,7 +37,7 @@
     $ZDOTDIR/.zshenv: zsh/zshenv
     $ZDOTDIR/.zshrc: zsh/zshrc
     $ZDOTDIR/ohmyzsh/custom/aliases.zsh: zsh/ohmyzsh/custom/aliases.zsh
-    $HOME/.xinitrc: X11/xinitrc
+    # $HOME/.xinitrc: X11/xinitrc
     $XDG_CONFIG_HOME/i3/config: i3/config
     $XDG_CONFIG_HOME/i3/lock: i3/lock
     $XDG_CONFIG_HOME/tmux/tmux.conf: tmux/tmux.conf
