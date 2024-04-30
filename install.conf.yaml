@@ -35,8 +35,10 @@
 
 - link:
     $ZDOTDIR/.zshenv: zsh/zshenv
+    $ZDOTDIR/.zprofile: zsh/zprofile
     $ZDOTDIR/.zshrc: zsh/zshrc
     $ZDOTDIR/ohmyzsh/custom/aliases.zsh: zsh/ohmyzsh/custom/aliases.zsh
+    $XDG_CONFIG_HOME/X11/xinitrc: X11/xinitrc
     # $HOME/.xinitrc: X11/xinitrc
     $XDG_CONFIG_HOME/i3/config: i3/config
     $XDG_CONFIG_HOME/i3/lock: i3/lock

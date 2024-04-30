@@ -1,95 +1,42 @@
 export PATH="$PATH:$HOME/.local/bin"
 
-# zsh
-export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
-export HISTFILE="$XDG_CONFIG_HOME"/zsh/history
+export EDITOR="nvim"
+export VISUAL="nvim"
 
-# Golang
-export PATH="$PATH:/usr/local/go/bin"
+export LC_ALL="en_US.UTF-8"
+
+export CMAKE_MAKE_PROGRAM=/usr/bin/make
+export CMAKE_CXX_COMPILER=/usr/bin/g++
+
 export GOPATH="$XDG_DATA_HOME"/go
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 
-# zig
-export PATH="$PATH:/usr/local/zig"
-
-# Rust
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
+
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-
-# xorg-xauth
-# NOTE: moved to global zshenv
-# export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-
-# xinit
-# NOTE: moved to global zshenv
-# export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
-# export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
-
-# Xorg
-# NOTE: moved to global zshenv
-# export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
-# export USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
-# export ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
-# export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
-#
-# GnuPG
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-
-# NPM
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-
-# OpenJDK
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-
-# Gradle
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 
-# Vagrant
-export VAGRANT_HOME="${XDG_DATA_HOME}"/vagrant
-export VAGRANT_ALIAS_FILE="${XDG_DATA_HOME}"/vagrant/aliases
-
-# Ansible
-export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
-export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible/ansible.cfg"
-export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/ansible/galaxy_cache"
-
-# Docker
-export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
-
-# Kubernetes
-export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
-export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
-
-# wget
 export WGETRC="$XDG_CONFIG_HOME"/wget
-
-# ripgrep
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep
-
-# w3m
 export W3M_DIR="$XDG_STATE_HOME"/w3m
 
 # instruct NVIDIA to use custom path
-if command -v nvidia-settings > /dev/null 2>&1;
-then
-  nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
-fi
+# if command -v nvidia-settings > /dev/null 2>&1;
+# then
+#   nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
+# fi
 
 # instruct sbt to use custom path
-if command -v sbt --version > /dev/null 2>&1;
-then
-  sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt
-fi
+# if command -v sbt --version > /dev/null 2>&1;
+# then
+#   sbt -ivy "$XDG_DATA_HOME"/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt
+# fi
 
 # instruct Maven to to use custom path
-if command -v mvn > /dev/null 2>&1;
-then
-  mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml
-fi
-
-# Default apps
-export EDITOR="nvim"
-export VISUAL="nvim"
-export TERMINAL="st"
-
-. "/home/rune/.local/share/cargo/env"
+# if command -v mvn > /dev/null 2>&1;
+# then
+#   mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml
+# fi

@@ -1,11 +1,8 @@
-# X session
 USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
 USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
 ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
 ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
-# Xorg compositor
 picom -b &
 
-# launch window manager
 exec i3
