@@ -53,6 +53,7 @@ create_session() {
     tmux split-window -v -t $SESSION_NAME:$WINDOW_NAME.1
 
     # Run the commands in the respective panes
+    tmux send-keys -t $SESSION_NAME:$WINDOW_NAME.0 "$MAIN_CMD" C-m
     tmux send-keys -t $SESSION_NAME:$WINDOW_NAME.1 "$PANE1_CMD" C-m
     tmux send-keys -t $SESSION_NAME:$WINDOW_NAME.2 "$PANE2_CMD" C-m
 
