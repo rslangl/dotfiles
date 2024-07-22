@@ -12,6 +12,7 @@
 - create:
     $HOME/src:
       mode: 0700
+    $XDG_CONFIG_HOME/zsh:
     $XDG_CONFIG_HOME/X11:
     $XDG_CONFIG_HOME/i3:
     $XDG_CONFIG_HOME/tmux:
@@ -43,6 +44,7 @@
     $XDG_CONFIG_HOME/i3/config: i3/config
     $XDG_CONFIG_HOME/i3/lock: i3/lock
     $XDG_CONFIG_HOME/tmux/tmux.conf: tmux/tmux.conf
+    $HOME/.local/bin/sessions.sh: tmux/sessions.sh
     $XDG_CONFIG_HOME/polybar/config: polybar/config
     $XDG_CONFIG_HOME/polybar/launch.sh: polybar/launch.sh
     $XDG_CONFIG_HOME/ranger/rc.conf: ranger/rc.conf

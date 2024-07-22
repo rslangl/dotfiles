@@ -4,7 +4,7 @@ export HISTFILE="$XDG_CONFIG_HOME"/zsh/history
 
 source $ZSH/custom/aliases.zsh
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="bureau"
 
 plugins=(
   git
