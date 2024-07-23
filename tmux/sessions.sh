@@ -20,7 +20,6 @@ find_i3_socket() {
 #fi
 
 # Export I3SOCK to ensure i3-msg can find the correct IPC socket
-#export I3SOCK=$(ls /run/user/$(id -u)/i3/ipc-socket.* | head -n 1)
 export I3SOCK=$(find_i3_socket)
 
 # Check if the i3 socket exists
@@ -34,8 +33,9 @@ create_session() {
   local SESSION_NAME=$1
   local WINDOW_NAME=$2
   local DIR=$3
-  local PANE1_CMD=$4
-  local PANE2_CMD=$5
+  local MAIN_CMD=$4
+  local PANE1_CMD=$5
+  local PANE2_CMD=$6
 
   tmux has-session -t $SESSION_NAME 2>/dev/null
 
@@ -72,6 +72,12 @@ create_i3_workspace() {
   i3-msg -s "$I3SOCK" "workspace number $WORKSPACE_NUM; move workspace to output $OUTPUT; exec $TERMINAL_CMD -e tmux attach -t $SESSION_NAME"
 }
 
+# Switch tmux sessions
+switch_tmux_session() {
+  local SESSION_NAME=$1
+  tmux switch-client -t $SESSION_NAME
+}
+
 # Detect connected monitors
 PRIMARY_MONITOR=$(xrandr --query | grep " connected primary" | cut -d ' ' -f1)
 SECONDARY_MONITOR=$(xrandr --query | grep " connected" | grep -v "primary" | cut -d ' ' -f1)
@@ -90,26 +96,25 @@ if [ $? != 0 ]; then
 fi
 
 # Create scratchpad i3 workspace on primary monitor
+i3-msg -s "$I3SOCK" "workspace 1; move workspace to ouput $PRIMARY_MONITOR"
 create_i3_workspace 1 $SCRATCHPAD_SESSION $PRIMARY_MONITOR
+
+# Workspace counter starting from 2
+WORKSPACE_NUM=2
 
 # Check for arguments and create respective sessions
 if [ $# -eq 0 ]; then
   # No arguments, only launch scratchpad session in i3
   i3-msg -s "$I3SOCK" "workspace 1"
 else
-  # Workspace counter starting from 2 (since 1 is for scratchpad)
-  WORKSPACE_NUM=2
 
   # Iterate over arguments to create specified sessions
   for SESSION_NAME in "$@"; do
     case $SESSION_NAME in
     dino_infra)
+      openvpn_wrapper.sh
       create_session "dino_infra" "main_window1" "~/work/DINO/infra-tbd" "nvim ." "ssh -i ssh/id_rsa dino@192.168.3.32" "ssh -i ssh/id_rsa dino@192.168.3.36"
       create_i3_workspace $WORKSPACE_NUM "work_session1" $SECONDARY_MONITOR
-      ;;
-    session2)
-      create_session "work_session2" "main_window2" "~/work/p138/" "cd ~/another/dir" "cd ~/yet/another/dir"
-      create_i3_workspace $WORKSPACE_NUM "work_session2" $SECONDARY_MONITOR
       ;;
     # Add more cases here for additional sessions
     *)
