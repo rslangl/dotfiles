@@ -28,6 +28,11 @@ export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
 export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 
+export PLATFORMIO_CORE_DIR="${XDG_DATA_HOME}/platformio"
+
+export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant 
+export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
+
 # instruct NVIDIA to use custom path
 # if command -v nvidia-settings > /dev/null 2>&1;
 # then
