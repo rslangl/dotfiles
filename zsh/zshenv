@@ -40,3 +40,4 @@ export W3M_DIR="$XDG_STATE_HOME"/w3m
 # then
 #   mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml
 # fi
+. "/home/user/.local/share/cargo/env"

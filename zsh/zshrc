@@ -2,9 +2,7 @@ export ZSH="$ZDOTDIR/ohmyzsh"
 
 export HISTFILE="$XDG_CONFIG_HOME"/zsh/history
 
-source $ZSH/custom/aliases.zsh
-
-ZSH_THEME="robbyrussell"
+ZSH_THEME="bureau"
 
 plugins=(
   git
@@ -15,6 +13,7 @@ plugins=(
 )
 
 eval "$(zoxide init zsh)" > /dev/null 2>&1
-eval "$(ssh-agent -s)" > /dev/null 2>&1
+
+eval "$(keychain --eval --agents ssh --quiet)"
 
 source $ZSH/oh-my-zsh.sh

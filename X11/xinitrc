@@ -3,6 +3,4 @@ USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
 ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
 ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
-picom -b &
-
-exec i3
+exec dwm

@@ -13,13 +13,13 @@
     $HOME/src:
       mode: 0700
     $XDG_CONFIG_HOME/X11:
-    $XDG_CONFIG_HOME/i3:
+#    $XDG_CONFIG_HOME/i3:
     $XDG_CONFIG_HOME/tmux:
-    $XDG_CONFIG_HOME/polybar:
+#    $XDG_CONFIG_HOME/polybar:
     $XDG_CONFIG_HOME/ranger:
     $XDG_DATA_HOME/gnupg:
     $XDG_CONFIG_HOME/nvidia/settings:
-    $XDG_CONFIG_HOME/rofi:
+#    $XDG_CONFIG_HOME/rofi:
     $XDG_CONFIG_HOME/wget:
     $XDG_CONFIG_HOME/ripgrep:
     $XDG_DATA_HOME/ivy2:
@@ -40,18 +40,18 @@
     $ZDOTDIR/ohmyzsh/custom/aliases.zsh: zsh/ohmyzsh/custom/aliases.zsh
     $XDG_CONFIG_HOME/X11/xinitrc: X11/xinitrc
     # $HOME/.xinitrc: X11/xinitrc
-    $XDG_CONFIG_HOME/i3/config: i3/config
-    $XDG_CONFIG_HOME/i3/lock: i3/lock
+#    $XDG_CONFIG_HOME/i3/config: i3/config
+#    $XDG_CONFIG_HOME/i3/lock: i3/lock
     $XDG_CONFIG_HOME/tmux/tmux.conf: tmux/tmux.conf
-    $XDG_CONFIG_HOME/polybar/config: polybar/config
-    $XDG_CONFIG_HOME/polybar/launch.sh: polybar/launch.sh
+#    $XDG_CONFIG_HOME/polybar/config: polybar/config
+#    $XDG_CONFIG_HOME/polybar/launch.sh: polybar/launch.sh
     $XDG_CONFIG_HOME/ranger/rc.conf: ranger/rc.conf
     $XDG_CONFIG_HOME/ranger/commands.py: ranger/commands.py
     $XDG_CONFIG_HOME/ranger/commands_full.py: ranger/commands_full.py
     $XDG_CONFIG_HOME/ranger/rifle.conf: ranger/rifle.conf
     $XDG_CONFIG_HOME/ranger/scope.sh: ranger/scope.sh
-    $XDG_CONFIG_HOME/rofi/config.rasi: rofi/config.rasi
-    $XDG_CONFIG_HOME/rofi/ericmurphyxyz.rasi: rofi/ericmurphyxyz.rasi
+#    $XDG_CONFIG_HOME/rofi/config.rasi: rofi/config.rasi
+#    $XDG_CONFIG_HOME/rofi/ericmurphyxyz.rasi: rofi/ericmurphyxyz.rasi
     $XDG_CONFIG_HOME/npm/npmrc: npm/npmrc
     $XDG_CONFIG_HOME/maven/settings.xml: maven/settings.xml
 
