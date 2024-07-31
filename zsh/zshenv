@@ -2,6 +2,7 @@ export PATH="$PATH:$HOME/.local/bin"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
+export TERMINAL="st"
 
 export LC_ALL="en_US.UTF-8"
 
@@ -22,6 +23,15 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export WGETRC="$XDG_CONFIG_HOME"/wget
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep
 export W3M_DIR="$XDG_STATE_HOME"/w3m
+
+export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
+export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
+
+export PLATFORMIO_CORE_DIR="${XDG_DATA_HOME}/platformio"
+
+export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant 
+export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
 
 # instruct NVIDIA to use custom path
 # if command -v nvidia-settings > /dev/null 2>&1;
