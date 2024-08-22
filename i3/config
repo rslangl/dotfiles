@@ -191,25 +191,28 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
+# Start polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# Start i3bar to display a workspace bar (plus the system information refresh_i3status
 # finds out, if available)
-bar {
-  i3bar_command $HOME/.config/polybar/launch.sh
-  colors {
-    background  #282A36
-    statusline  #F8F8F2
-    separator   #44475A
+# bar {
+#   i3bar_command $HOME/.config/polybar/launch.sh
+#   colors {
+#     background  #282A36
+#     statusline  #F8F8F2
+#     separator   #44475A
+#
+#     focused_workspace   #44475A #44475A #F8F8F2
+#     active_workspace    #282A36 #44475A #F8F8F2
+#     inactive_workspace  #282A36 #282A36 #BFBFBF
+#     urgent_workspace    #FF5555 #FF5555 #F8F8F2
+#     binding_mode        #FF5555 #FF5555 #F8F8F2
+#   }
+# }
 
-    focused_workspace   #44475A #44475A #F8F8F2
-    active_workspace    #282A36 #44475A #F8F8F2
-    inactive_workspace  #282A36 #282A36 #BFBFBF
-    urgent_workspace    #FF5555 #FF5555 #F8F8F2
-    binding_mode        #FF5555 #FF5555 #F8F8F2
-  }
-}
-
-# Set background image
-exec_always feh --bg-fill --no-fehbg $HOME/Pictures/wallpaper/astartes.jpeg
+# # Set background image
+#exec_always feh --bg-fill --no-fehbg $HOME/Pictures/wallpaper/astartes.jpeg
 
 # Shortcut for lockscreen
 bindsym $mod+x exec $HOME/.config/i3/lock

@@ -3,4 +3,5 @@ USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
 ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
 ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
-exec dwm
+#exec dwm
+exec i3
