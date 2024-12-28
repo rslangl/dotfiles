@@ -13,7 +13,12 @@ plugins=(
 )
 
 eval "$(zoxide init zsh)" > /dev/null 2>&1
+<<<<<<< HEAD
 #eval "$(ssh-agent -s)" > /dev/null 2>&1
 eval "$(keychain --absolute --dir "$XDG_RUNTIME_DIR"/ --eval --agents ssh --quiet)"
+=======
+
+eval "$(keychain --absolute --dir $XDG_RUNTIME_DIR/keychain --eval --agents ssh --quiet)"
+>>>>>>> b1d9b7a (feat: some tidying and moving away from dwm)
 
 source $ZSH/oh-my-zsh.sh
