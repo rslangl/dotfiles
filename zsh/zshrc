@@ -14,6 +14,6 @@ plugins=(
 
 eval "$(zoxide init zsh)" > /dev/null 2>&1
 
-eval "$(keychain --eval --agents ssh --quiet)"
+eval "$(keychain --absolute --dir $XDG_RUNTIME_DIR/keychain --eval --agents ssh --quiet)"
 
 source $ZSH/oh-my-zsh.sh

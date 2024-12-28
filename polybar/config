@@ -59,7 +59,7 @@ font-1 = Font Awesome:style=Regular:size=15;3
 ; Modules
 modules-left   = i3
 modules-center = weather time date
-modules-right  = battery network lock logout poweroff
+modules-right  = battery wired-network wireless-network pulseaudio lock logout poweroff
 
 ; Cursor actions
 cursor-click  = pointer
@@ -161,7 +161,7 @@ date = %%{F#999}%Y-%m-%d%%{F-}
 label         =   %date%
 label-padding = 4
 
-[module/audio]
+[module/pulseaudio]
 type = internal/pulseaudio
 
 ; Volume label
@@ -174,7 +174,11 @@ label-muted            = 
 label-muted-foreground = ${colors.red}
 label-muted-padding    = 2
 
-[module/network]
+[module/wireless-network]
+type = internal/network
+interace = eno1
+
+[module/wired-network]
 type = internal/network
 
 ; Interface
