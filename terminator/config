@@ -1,0 +1,16 @@
+[global_config]
+focus = system
+
+[keybindings]
+#full_screen = <Ctrl><Shift>F11
+
+[profiles]
+[[default]]
+show_titlebar = False
+#font = Fixed 10
+background_color = "#000000"
+foreground_color = "#FFFFFF"
+scrollback_lines = '500'
+cursor_blink = True
+background_darkness = 0.85
+background_type = "transparent"

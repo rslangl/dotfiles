@@ -10,23 +10,37 @@
 - clean: ["~"]
 
 - create:
-    $HOME/source:
-      mode: 0700
-    $HOME/projects:
-      mode: 0700
+    # software development: "checkout" other projects, reverse engineering, 
+    # main software projects
+    $HOME/dev/co:
+    $HOME/dev/sw:
+    $HOME/dev/re:
+    # own documents, etc.
+    $HOME/self:
+    $HOME/self/music:
+    # shared folder: podcasts, lectures, torrents
+    $HOME/share/cast:
+    $HOME/share/lect: 
+    $HOME/share/seed:
+    # textbooks, manuals, etc.: arts, languages, science, technology
+    $HOME/docs/art:
+    $HOME/docs/lang:
+    $HOME/docs/sci:
+    $HOME/docs/tech:
+    # emails
+    $HOME/mail:
+    # downloads, to be sorted
+    $HOME/tmp:
+    # virtual machines
+    $HOME/vm:
     $XDG_CONFIG_HOME/zsh:
     $XDG_CONFIG_HOME/X11:
     $XDG_CONFIG_HOME/i3:
     $XDG_CONFIG_HOME/tmux:
+    $XDG_CONFIG_HOME/terminator:
     $XDG_CONFIG_HOME/polybar:
-    $XDG_CONFIG_HOME/git/config:
-    $XDG_CONFIG_HOME/git/ignore:
-    $XDG_CONFIG_HOME/git/attributes:
-    $XDG_CONFIG_HOME/git/credentials: 
-    $XDG_CONFIG_HOME/git/gitk:
     $XDG_DATA_HOME/gnupg:
     $XDG_CONFIG_HOME/nvidia/settings:
-#    $XDG_CONFIG_HOME/rofi:
     $XDG_CONFIG_HOME/wget:
     $XDG_CONFIG_HOME/ripgrep:
     $XDG_DATA_HOME/ivy2:
@@ -38,6 +52,7 @@
     $XDG_CONFIG_HOME/kube:
     $XDG_CONFIG_HOME/maven:
     $XDG_CONFIG_HOME/ansible:
+    $XDG_CONFIG_HOME/mpd:
 
 - link:
     $ZDOTDIR/.zshenv: zsh/zshenv
@@ -46,12 +61,12 @@
     $ZDOTDIR/ohmyzsh/custom/aliases.zsh: zsh/ohmyzsh/custom/aliases.zsh
     $XDG_CONFIG_HOME/X11/xinitrc: X11/xinitrc
     $XDG_CONFIG_HOME/i3/config: i3/config
-    # $XDG_CONFIG_HOME/i3/lock: i3/lock
+    $XDG_CONFIG_HOME/i3/lock: i3/lock
     $XDG_CONFIG_HOME/tmux/tmux.conf: tmux/tmux.conf
-    $XDG_CONFIG_HOME/polybar/config: polybar/config
-    $XDG_CONFIG_HOME/polybar/launch.sh: polybar/launch.sh
-#    $XDG_CONFIG_HOME/rofi/config.rasi: rofi/config.rasi
-#    $XDG_CONFIG_HOME/rofi/ericmurphyxyz.rasi: rofi/ericmurphyxyz.rasi
+    $XDG_CONFIG_HOME/polybar/: 
+      glob: true
+      path: polybar/*
+    $XDG_CONFIG_HOME/terminator/config: terminator/config
     $XDG_CONFIG_HOME/npm/npmrc: npm/npmrc
     $XDG_CONFIG_HOME/maven/settings.xml: maven/settings.xml
     $XDG_CONFIG_HOME/ansible/ansible.cfg: ansible/ansible.cfg

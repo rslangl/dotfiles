@@ -19,6 +19,8 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+
 export WGETRC="$XDG_CONFIG_HOME"/wget
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep
 export W3M_DIR="$XDG_STATE_HOME"/w3m
@@ -41,4 +43,6 @@ export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
 export ZEPHYR_SDK_INSTALL_DIR="${HOME}/.local/opt/zephyr-sdk-0.16.8"
 
-. "/home/user/.local/share/cargo/env"
+export PLATFORMIO_CORE_DIR="$XDG_DATA_HOME"/platformio
+
+. "/home/$(whoami)/.local/share/cargo/env"

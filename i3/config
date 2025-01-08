@@ -14,6 +14,8 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace 8
+#font pango:FiraCode Nerd Font Mono 12
+font pango:3270 Nerd Font Mono 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -115,7 +117,7 @@ bindsym $mod+a focus parent
 
 # rofi binds
 bindsym $mod+d exec "rofi -modi drun,run,window,ssh -show drun"
-bindsym $mod+Shift+d exec "$HOME/.local/bin/rofi-search-box" 
+#bindsym $mod+Shift+d exec "$HOME/.local/bin/rofi-search-box" 
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -193,22 +195,22 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar 
 bar {
-  i3bar_command $HOME/.config/polybar/launch.sh
-  colors {
-    background  #282A36
-    statusline  #F8F8F2
-    separator   #44475A
-
-    focused_workspace   #44475A #44475A #F8F8F2
-    active_workspace    #282A36 #44475A #F8F8F2
-    inactive_workspace  #282A36 #282A36 #BFBFBF
-    urgent_workspace    #FF5555 #FF5555 #F8F8F2
-    binding_mode        #FF5555 #FF5555 #F8F8F2
-  }
+  i3bar_command $HOME/.config/polybar/launch.sh --cuts
+  # colors {
+  #   background  #282A36
+  #   statusline  #F8F8F2
+  #   separator   #44475A
+  #
+  #   focused_workspace   #44475A #44475A #F8F8F2
+  #   active_workspace    #282A36 #44475A #F8F8F2
+  #   inactive_workspace  #282A36 #282A36 #BFBFBF
+  #   urgent_workspace    #FF5555 #FF5555 #F8F8F2
+  #   binding_mode        #FF5555 #FF5555 #F8F8F2
+  # }
 }
 
 # Set background image
-exec_always nitrogen --set-centered $HOME/Pictures/wallpaper/astartes.jpeg
+exec_always nitrogen --set-centered $XDG_DATA_HOME/wallpapers/astartes.jpeg
 
 # Shortcut for lockscreen
 bindsym $mod+x exec $HOME/.config/i3/lock
@@ -216,3 +218,7 @@ bindsym $mod+x exec $HOME/.config/i3/lock
 # Gaps
 gaps inner 5px
 gaps outer 10px
+
+# Disable window title bar
+default_border pixel 1
+default_floating_border pixel 1
