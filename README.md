@@ -2,23 +2,25 @@
 
 ## Overview
 
-My dotfiles for feeling special
+My dotfiles for feeling special.
 
 ## Requirements
 
-Based on a fresh Debian 12 install, some packages are required:
+Either use bootstrap, or manually install everything in accordance with the following section, which assumes a minimal Debian 12 install.
+
+**Dependencies available through APT**
 ```shell
 sudo apt update
 sudo apt install -y \
-  i3
-  terminator
-  tmux
-  rofi
-  zsh
+  i3 \
+  terminator \
+  tmux \
+  rofi \
+  zsh \
   keychain
 ```
 
-Some other packages need (?) to be built from source, e.g. polybar:
+**Polybar**: It's just purdy.
 ```shell
 mkdir -p $HOME/dev/co/
 cd $HOME/dev/co/
@@ -27,19 +29,20 @@ git clone https://github.com/polybar/polybar && cd polybar
 cd build/ && sudo make install
 ```
 
-A custom i3 lock screen is also used:
+**i3lock**: It's also purdy.
 ```shell
 TODO
 ```
 
-Oh-my-zsh is used with zsh:
+**Oh-my-zsh**: Guess what, purdy, and functional.
 ```shell
 TODO
 ```
 
-TODO:
-* zoxide
-* ohmyzsh plugins
+**zoxide**: Requires fewer neural pathways to find your stuff.
+```shell
+TODO
+```
 
 ## Usage
 
