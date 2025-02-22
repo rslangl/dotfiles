@@ -10,8 +10,7 @@
 - clean: ["~"]
 
 - create:
-    # software development: "checkout" other projects, reverse engineering, 
-    # main software projects
+    # software development: "checkout" other projects, reverse engineering, main software projects
     $HOME/dev/co:
     $HOME/dev/sw:
     $HOME/dev/re:
@@ -40,6 +39,7 @@
     $XDG_CONFIG_HOME/terminator:
     $XDG_CONFIG_HOME/polybar:
     $XDG_DATA_HOME/gnupg:
+    $XDG_CONFIG_HOME/git:
     $XDG_CONFIG_HOME/nvidia/settings:
     $XDG_CONFIG_HOME/wget:
     $XDG_CONFIG_HOME/ripgrep:
@@ -53,6 +53,8 @@
     $XDG_CONFIG_HOME/maven:
     $XDG_CONFIG_HOME/ansible:
     $XDG_CONFIG_HOME/mpd:
+    $XDG_CONFIG_HOME/ncmpcpp:
+    $XDG_DATA_HOME/ncmpcpp-lyrics:
 
 - link:
     $ZDOTDIR/.zshenv: zsh/zshenv
@@ -70,6 +72,7 @@
     $XDG_CONFIG_HOME/npm/npmrc: npm/npmrc
     $XDG_CONFIG_HOME/maven/settings.xml: maven/settings.xml
     $XDG_CONFIG_HOME/ansible/ansible.cfg: ansible/ansible.cfg
+    $XDG_CONFIG_HOME/ncmpcpp/config: ncmpcpp/config
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
