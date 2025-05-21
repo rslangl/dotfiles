@@ -28,18 +28,20 @@ usage() {
 setup_system() {
   echo "Setting up system configs"
 
-  #[XDG_CONFIG_DIRS]="/etc/xdg"
-  #[XDG_DATA_DIRS]="/usr/local/share:/usr/share"
+  USER_HOME="$HOME"
+
   declare -A XDG_PATHS
   XDG_PATHS=(
-    [XDG_CONFIG_HOME]="${HOME}/.config"
-    [XDG_DATA_HOME]="${HOME}/.local/share"
-    [XDG_CACHE_HOME]="${HOME}/.cache"
-    [XDG_STATE_HOME]="${HOME}/.local/state"
+    [XDG_CONFIG_DIRS]="/etc/xdg"
+    [XDG_DATA_DIRS]="/usr/local/share:/usr/share"
+    [XDG_CONFIG_HOME]="${USER_HOME}/.config"
+    [XDG_DATA_HOME]="${USER_HOME}/.local/share"
+    [XDG_CACHE_HOME]="${USER_HOME}/.cache"
+    [XDG_STATE_HOME]="${USER_HOME}/.local/state"
   )
 
   # create environment.d directory
-  ENV_DIR="${HOME}/.config/environment.d"
+  ENV_DIR="${USER_HOME}/.config/environment.d"
   mkdir -p "$ENV_DIR"
 
   # write the config file with XDG paths
