@@ -30,10 +30,14 @@ setup_system() {
 
   USER_HOME="$HOME"
 
-  declare -A XDG_PATHS
-  XDG_PATHS=(
+  declare -A XDG_SYSTEM_PATHS
+  XDG_SYSTEM_PATHS=(
     [XDG_CONFIG_DIRS]="/etc/xdg"
     [XDG_DATA_DIRS]="/usr/local/share:/usr/share"
+  )
+
+  declare -A XDG_USER_PATHS
+  XDG_USER_PATHS=(
     [XDG_CONFIG_HOME]="${USER_HOME}/.config"
     [XDG_DATA_HOME]="${USER_HOME}/.local/share"
     [XDG_CACHE_HOME]="${USER_HOME}/.cache"
