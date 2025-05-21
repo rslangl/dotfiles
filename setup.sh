@@ -1,20 +1,34 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 #IMAGES_DIR="${ROOT_DIR}/runtime/images"
 #DISKS_DIR="${ROOT_DIR}/runtime/vm_disks"
 
-declare -A PACKAGES
+declare -A XDG_SYSTEM_PATHS
+XDG_SYSTEM_PATHS=(
+  [XDG_CONFIG_DIRS]="/etc/xdg"
+  [XDG_DATA_DIRS]="/usr/local/share:/usr/share"
+)
 
+declare -A XDG_USER_PATHS
+XDG_USER_PATHS=(
+  [XDG_CONFIG_HOME]="${USER_HOME}/.config"
+  [XDG_DATA_HOME]="${USER_HOME}/.local/share"
+  [XDG_CACHE_HOME]="${USER_HOME}/.cache"
+  [XDG_STATE_HOME]="${USER_HOME}/.local/state"
+)
+
+declare -A PACKAGES
 PACKAGES=(
   [tmux]="tmux"
   [zsh]="zsh"
   [ohmyzsh]=""
   [terminator]=""
   [ripgrep]=""
+  [jq]=""
   [nvim]=""
   [keychain]=""
   [zoxide]=""
@@ -30,45 +44,84 @@ setup_system() {
 
   USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
-  declare -A XDG_SYSTEM_PATHS
-  XDG_SYSTEM_PATHS=(
-    [XDG_CONFIG_DIRS]="/etc/xdg"
-    [XDG_DATA_DIRS]="/usr/local/share:/usr/share"
-  )
-
-  declare -A XDG_USER_PATHS
-  XDG_USER_PATHS=(
-    [XDG_CONFIG_HOME]="${USER_HOME}/.config"
-    [XDG_DATA_HOME]="${USER_HOME}/.local/share"
-    [XDG_CACHE_HOME]="${USER_HOME}/.cache"
-    [XDG_STATE_HOME]="${USER_HOME}/.local/state"
-  )
-
   # create environment.d directory
   ENV_DIR="${USER_HOME}/.config/environment.d"
   mkdir -p "$ENV_DIR"
 
+  # backup existing xdg.conf
+  if [ -e "$USER_HOME/.config/environment.d/xdg.conf" ]; then
+    echo "Backing up existing xdg.conf"
+    mv "${USER_HOME}/.config/environment.d/xdg.conf" "${USER_HOME}/.config/environment.d/xdg.conf.bak"
+  fi
+
   # write the config file with XDG paths
-  for xdg_var in "${!XDG_PATHS[@]}"; do
-    echo "$xdg_var=${XDG_PATHS[$xdg_var]}" >>"$ENV_DIR/xdg.conf"
+  for xdg_var in "${!XDG_USER_PATHS[@]}"; do
+    echo "Adding XDG path $xdg_var"
+    echo "$xdg_var=${XDG_USER_PATHS[$xdg_var]}" >>"$ENV_DIR/xdg.conf"
+  done
+
+  for xdg_sys_var in "${!XDG_SYSTEM_PATHS[@]}"; do
+    echo "Adding XDG sys path $xdg_sys_var"
+    echo "$xdg_sys_var=${XDG_SYSTEM_PATHS[$xdg_sys_var]}" >>"$ENV_DIR/xdg.conf"
   done
 
   # create directories
-  for xdg_path in "${XDG_PATHS[@]}"; do
+  for xdg_path in "${XDG_USER_PATHS[@]}"; do
+    echo "Creating XDG path $xdg_path"
     mkdir -p "$xdg_path"
   done
 
   echo "Done!"
 }
 
-setup_packages() {
+install_packages() {
+  local pkg_manager $1
+  local update_cmd $2
+  local install_cmd="$3"
+
+  echo "Using package manager $pkg_manager"
+
+  echo "Updating cache"
+  eval "$update_cmd"
+
   echo "Installing packages"
+  eval "$install_cmd ${PACKAGES[*]}"
+
+  echo "Done"
+}
+
+setup_packages() {
+  echo "Setting up packages"
+
+  if command -v apt &>/dev/null; then
+    install_packages "apt" "apt update" "apt install -y"
+  elif command -v zypper &>/dev/null; then
+    install_packages "zypper" "zypper refresh" "zypper install -y"
+  else
+    echo "Package manager not found or not supported"
+    exit 1
+  fi
 }
 
 check() {
-  # TODO: XDG_BASE_DIR
-  # TODO: list of packages
   echo "Checking system configs and packages"
+
+  XDG_VARS=("${!XDG_SYSTEM_PATHS[@]}" "${!XDG_USER_PATHS[@]}")
+
+  for xdg_var in "${XDG_VARS[@]}"; do
+    if [[ -z "$xdg_var" ]]; then
+      echo "XDG variable not set: $xdg_var"
+    fi
+  done
+
+  missing_pkgs=()
+
+  for pkg in "${PACKAGES[@]}"; do
+    if command -v "$pkg" >/dev/null 2>&1; then
+      missing_pkgs+=("$pkg")
+      echo "Package not found: $pkg"
+    fi
+  done
 }
 
 install() {
@@ -78,7 +131,7 @@ install() {
 while [[ "$#" -gt 0 ]]; do
   case "$1" in
   --setup-system)
-    if [[ $EUID -ne 0 ]]; then
+    if [[ "$EUID" -ne 0 ]]; then
       echo "Must run as sudo" >&2
       exit 1
     fi
