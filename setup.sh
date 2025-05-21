@@ -28,7 +28,7 @@ usage() {
 setup_system() {
   echo "Setting up system configs"
 
-  USER_HOME="$HOME"
+  USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
   declare -A XDG_SYSTEM_PATHS
   XDG_SYSTEM_PATHS=(
