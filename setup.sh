@@ -24,6 +24,7 @@ declare -A EXT_PACKAGES
 ext_pkgs_defs=(
   "ohmyzsh":"${USER_HOME}/.config/zsh/ohmyzsh"
   "nvidia":"${USER_HOME}/.config/nvidia/settings"
+  "nvim":"${USER_HOME}/.config/nvim"
   "zoxide":""
 )
 
@@ -32,16 +33,14 @@ for ext_pkg_entry in "${!ext_pkgs_defs[@]}"; do
   EXT_PACKAGES["$pkg_name"]="$pkg_xdg_path"
 done
 
+# installed with package manager and needs a config path
 declare -A PACKAGES
 pkgs_defs=(
   "tmux":"${USER_HOME}/.config/tmux"
   "zsh":"${USER_HOME}/.config/zsh"
   "terminator":"${USER_HOME}/.config/terminator"
   "ripgrep":"${USER_HOME}/.config/ripgrep"
-  "jq":""
-  "fzf":""
   "wget":"${USER_HOME}/.config/wget"
-  "nvim":"${USER_HOME}/.config/nvim"
   "keychain":"${USER_HOME}/.config/keychain"
   "maven":"${USER_HOME}/.config/maven"
   "ansible":"${USER_HOME}/.config/ansible"
@@ -51,6 +50,9 @@ for pkgs_entry in "${pkgs_defs[@]}"; do
   IFS=':' read -r pkg_name pkg_cfg_path <<<"$pkgs_entry"
   PACKAGES["$pkg_name"]="$pkg_cfg_path"
 done
+
+# packages that only needs installation using the package manager
+utils=("fzf" "jq")
 
 usage() {
   echo "Usage: $0 [--setup-system | --setup-packages | --check | --install]"
@@ -110,9 +112,7 @@ install_packages() {
   eval "$update_cmd"
 
   echo "Installing packages"
-  eval "$install_cmd ${!PACKAGES[@]}"
-
-  echo "Done"
+  eval "$install_cmd ${!PACKAGES[@]} $utils"
 }
 
 setup_packages() {
@@ -126,6 +126,8 @@ setup_packages() {
     echo "Package manager not found or not supported"
     exit 1
   fi
+
+  echo "Done"
 }
 
 check() {
@@ -151,7 +153,23 @@ check() {
 
 install() {
   echo "Installing dotfiles"
-  # TODO: use stow?
+
+  for pkg in "${!PACKAGES[@]}"; do
+    PKG_DIR="${SCRIPT_DIR}/$pkg"
+
+    # skip if directory does not exist
+    if [ -d "$PKG_DIR" ]; then
+      continue
+    fi
+
+    # skip if directory is empty
+    if [ -z "$(ls -A "$PKG_DIR")" ]; then
+      continue
+    fi
+
+    stow -d "$ROOT_DIR" -t "$HOME" "$pkg"
+
+  done
 }
 
 while [[ "$#" -gt 0 ]]; do
