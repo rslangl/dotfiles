@@ -7,6 +7,8 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 #IMAGES_DIR="${ROOT_DIR}/runtime/images"
 #DISKS_DIR="${ROOT_DIR}/runtime/vm_disks"
 
+USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
+
 declare -A XDG_SYSTEM_PATHS
 XDG_SYSTEM_PATHS=(
   [XDG_CONFIG_DIRS]="/etc/xdg"
@@ -21,18 +23,33 @@ XDG_USER_PATHS=(
   [XDG_STATE_HOME]="${USER_HOME}/.local/state"
 )
 
-declare -A PACKAGES
-PACKAGES=(
-  [tmux]="tmux"
-  [zsh]="zsh"
-  [ohmyzsh]=""
-  [terminator]=""
-  [ripgrep]=""
-  [jq]=""
-  [nvim]=""
-  [keychain]=""
+# packages not accessible through the system package manager
+declare -A EXT_PACKAGES
+EXT_PACKAGES=(
+  [ohmyzsh]="${USER_HOME}/.config/zsh/ohmyzsh"
+  [nvidia]="${USER_HOME}/.config/nvidia/settings"
   [zoxide]=""
 )
+
+declare -A PACKAGES
+pkgs_defs=(
+  "tmux":"${USER_HOME}/.config/tmux"
+  "zsh":"${USER_HOME}/.config/zsh"
+  "terminator":"${USER_HOME}/.config/terminator"
+  "ripgrep":"${USER_HOME}/.config/ripgrep"
+  "jq":""
+  "fzf":""
+  "wget":"${USER_HOME}/.config/wget"
+  "nvim":"${USER_HOME}/.config/nvim"
+  "keychain":"${USER_HOME}/.config/keychain"
+  "maven":"${USER_HOME}/.config/maven"
+  "ansible":"${USER_HOME}/.config/ansible"
+  "git":"${USER_HOME}/.config/git"
+)
+for pkgs_entry in "${pkgs_defs[@]}"; do
+  IFS=':' read -r pkg_name pkg_cfg_path <<<"$pkgs_entry"
+  PACKAGES["$pkg_name"]="$pkg_cfg_path"
+done
 
 usage() {
   echo "Usage: $0 [--setup-system | --setup-packages | --check | --install]"
@@ -41,8 +58,6 @@ usage() {
 
 setup_system() {
   echo "Setting up system configs"
-
-  USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
   # create environment.d directory
   ENV_DIR="${USER_HOME}/.config/environment.d"
@@ -75,17 +90,25 @@ setup_system() {
 }
 
 install_packages() {
-  local pkg_manager $1
-  local update_cmd $2
+  local pkg_manager="$1"
+  local update_cmd="$2"
   local install_cmd="$3"
 
   echo "Using package manager $pkg_manager"
+
+  echo "Creating XDG paths for packages"
+  for pkg in "${!PACKAGES[@]}"; do
+    xdg_pkg_path="${PACKAGES[$pkg]}"
+    if [[ ! -z "$xdg_pkg_path" ]]; then
+      mkdir -p "$xdg_pkg_path"
+    fi
+  done
 
   echo "Updating cache"
   eval "$update_cmd"
 
   echo "Installing packages"
-  eval "$install_cmd ${PACKAGES[*]}"
+  eval "$install_cmd ${!PACKAGES[@]}"
 
   echo "Done"
 }
@@ -126,6 +149,7 @@ check() {
 
 install() {
   echo "Installing dotfiles"
+  # TODO: use stow?
 }
 
 while [[ "$#" -gt 0 ]]; do
