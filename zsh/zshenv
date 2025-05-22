@@ -37,12 +37,4 @@ export MAVEN_OPTS=-Dmaven.repo.local="$XDG_DATA_HOME"/maven/repository
 export SBT_HOME="$XDG_DATA_HOME"/sbt
 export SBT_OPTS="-Dsbt.global.base=${XDG_CONFIG_HOME}/sbt -Dsbt.boot.directory=${XDG_CACHE_HOME}/sbt/boot -Divy.home=${XDG_CACHE_HOME}/ivy2"
 
-export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
-
-#export ZEPHYR_BASE="${XDG_DATA_HOME}/zephyr/zephyr"
-export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
-export ZEPHYR_SDK_INSTALL_DIR="${HOME}/.local/opt/zephyr-sdk-0.16.8"
-
-export PLATFORMIO_CORE_DIR="$XDG_DATA_HOME"/platformio
-
 . "/home/$(whoami)/.local/share/cargo/env"
