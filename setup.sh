@@ -10,26 +10,27 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
 declare -A XDG_SYSTEM_PATHS
-XDG_SYSTEM_PATHS=(
-  [XDG_CONFIG_DIRS]="/etc/xdg"
-  [XDG_DATA_DIRS]="/usr/local/share:/usr/share"
-)
+XDG_SYSTEM_PATHS[XDG_CONFIG_DIRS]="/etc/xdg"
+XDG_SYSTEM_PATHS[XDG_DATA_DIRS]="/usr/local/share:/usr/share"
 
 declare -A XDG_USER_PATHS
-XDG_USER_PATHS=(
-  [XDG_CONFIG_HOME]="${USER_HOME}/.config"
-  [XDG_DATA_HOME]="${USER_HOME}/.local/share"
-  [XDG_CACHE_HOME]="${USER_HOME}/.cache"
-  [XDG_STATE_HOME]="${USER_HOME}/.local/state"
-)
+XDG_USER_PATHS[XDG_CONFIG_HOME]="${USER_HOME}/.config"
+XDG_USER_PATHS[XDG_DATA_HOME]="${USER_HOME}/.local/share"
+XDG_USER_PATHS[XDG_CACHE_HOME]="${USER_HOME}/.cache"
+XDG_USER_PATHS[XDG_STATE_HOME]="${USER_HOME}/.local/state"
 
 # packages not accessible through the system package manager
 declare -A EXT_PACKAGES
-EXT_PACKAGES=(
-  [ohmyzsh]="${USER_HOME}/.config/zsh/ohmyzsh"
-  [nvidia]="${USER_HOME}/.config/nvidia/settings"
-  [zoxide]=""
+ext_pkgs_defs=(
+  "ohmyzsh":"${USER_HOME}/.config/zsh/ohmyzsh"
+  "nvidia":"${USER_HOME}/.config/nvidia/settings"
+  "zoxide":""
 )
+
+for ext_pkg_entry in "${!ext_pkgs_defs[@]}"; do
+  IFS=':' read -r pkg_name pkg_xdg_path <<<"$ext_pkg_entry"
+  EXT_PACKAGES["$pkg_name"]="$pkg_xdg_path"
+done
 
 declare -A PACKAGES
 pkgs_defs=(
@@ -100,6 +101,7 @@ install_packages() {
   for pkg in "${!PACKAGES[@]}"; do
     xdg_pkg_path="${PACKAGES[$pkg]}"
     if [[ ! -z "$xdg_pkg_path" ]]; then
+      echo "Creating path $xdg_pkg_path"
       mkdir -p "$xdg_pkg_path"
     fi
   done
