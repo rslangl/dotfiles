@@ -2,10 +2,7 @@
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="$(dirname "$SCRIPT_DIR")"
-#IMAGES_DIR="${ROOT_DIR}/runtime/images"
-#DISKS_DIR="${ROOT_DIR}/runtime/vm_disks"
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
@@ -155,19 +152,22 @@ install() {
   echo "Installing dotfiles"
 
   for pkg in "${!PACKAGES[@]}"; do
-    PKG_DIR="${SCRIPT_DIR}/$pkg"
+    pkg_dots_dir="${DOTFILES_DIR}/$pkg"
+    target="${PACKAGES[$pkg]}"
 
     # skip if directory does not exist
-    if [ -d "$PKG_DIR" ]; then
+    if [ ! -d "$pkg_dots_dir" ]; then
       continue
     fi
 
     # skip if directory is empty
-    if [ -z "$(ls -A "$PKG_DIR")" ]; then
+    if [ -z "$(find "$DOTFILES_DIR/$pkg" -type f -mindepth 1)"]; then
       continue
     fi
 
-    stow -d "$ROOT_DIR" -t "$HOME" "$pkg"
+    echo "Setting up $pkg to $target"
+
+    stow -d "$DOTFILES_DIR" -t "$target" "$pkg"
 
   done
 }
