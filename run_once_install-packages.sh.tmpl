@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# TODO: associative array for distro differences
+pkgs=(ripgrep curl wget gnupg make cmake rlwrap keychain)
+
+function install_with_pkg_mgr() {
+  
+  if { "$#" -ne 1 ]; then
+    echo "Error: one package name needed"
+    exit 1
+  fi
+
+  if ! command -v $1 > /dev/null 2>&1; then
+  {{ if eq .osRelease.ID "debian" }}
+    sudo apt install $1
+  {{ else if or (eq .osRelease.ID "opensuse") (eq .osRelease.ID_LIKE "suse") }}
+    sudo zypper install $1
+  {{ end }}
+  fi
+}
+
+for pkg in "${pkgs[@]}"; do
+  install_with_pkg_mgr "$pkg"
+done
+
+if ! command -v zoxide > /dev/null 2>&1; then
+  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+fi
+
+if ! command -v cht.sh > /dev/null 2>&1; then
+  curl https://cht.sh/:cht.sh > "$HOME/.local/bin/cht.sh"
+  chmod +x "$HOME/.local/bin/cht.sh"
+fi
+
+# TODO: neovim
