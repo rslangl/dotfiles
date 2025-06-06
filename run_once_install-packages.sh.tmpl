@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # TODO: associative array for distro differences
-pkgs=(ripgrep curl wget gnupg make cmake rlwrap keychain fzf)
+pkgs=(ripgrep curl wget gnupg make cmake rlwrap keychain fzf jq fd wezterm)
 
 function install_with_pkg_mgr() {
   
@@ -33,6 +33,10 @@ fi
 if ! command -v cht.sh > /dev/null 2>&1; then
   curl https://cht.sh/:cht.sh > "$HOME/.local/bin/cht.sh"
   chmod +x "$HOME/.local/bin/cht.sh"
+fi
+
+if ! command -v cargo > /dev/null 2>&1; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
 
 # TODO: neovim
