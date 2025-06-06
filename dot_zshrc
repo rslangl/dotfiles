@@ -41,6 +41,7 @@ export SBT_OPTS="-Dsbt.global.base=${XDG_CONFIG_HOME}/sbt -Dsbt.boot.directory=$
 
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias mvn='mvn -gs "${XDG_CONFIG_HOME}/maven/settings.xml'
+alias cht.sh='cheat'
 
 # zsh
 
@@ -60,7 +61,8 @@ plugins=(
 # utilities
 
 eval "$(zoxide init zsh)" > /dev/null 2>&1
-eval "$(keychain --absolute --dir $XDG_RUNTIME_DIR/keychain --eval --agents ssh ~/.ssh/github ~/.ssh/norsetech --quiet)"
+eval "$(keychain --absolute --dir $XDG_RUNTIME_DIR/keychain --eval github)"
 
+source <(fzf --zsh)
 source $ZSH/oh-my-zsh.sh
-source "${HOME}/.local/share/cargo/env"
+. "${HOME}/.local/share/cargo/env"
