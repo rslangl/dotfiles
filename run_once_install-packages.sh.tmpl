@@ -1,17 +1,19 @@
 #!/bin/bash
 
+OS_RELEASE=$(cat /etc/os-release)
+OS_ID=$(grep '^ID_LIKE=' /etc/os-release | cut -d= -f2- | tr -d '"')
+
 # TODO: associative array for distro differences
-pkgs=(ripgrep curl wget gnupg make cmake rlwrap keychain fzf jq fd wezterm)
+pkgs=(dnf ripgrep curl wget gnupg make cmake tmux rlwrap keychain fzf jq fd)
 
 function install_with_pkg_mgr() {
   
-  if [ "$#" -ne 1 ]; then
+  if [[ "$#" -ne 1 ]]; then
     echo "Error: one package name needed"
     exit 1
   fi
 
-  local OS_RELEASE=$(cat /etc/os-release)
-  local ID_LIKE=$(grep '^ID_LIKE=' /etc/os-release | cut -d= -f2- | tr -d '"')
+  local ID_LIKE=$OS_ID
   
   if ! command -v $1 > /dev/null 2>&1; then
     if echo "$ID_LIKE" | grep -qw "suse"; then
