@@ -28,6 +28,10 @@ for pkg in "${pkgs[@]}"; do
   install_with_pkg_mgr "$pkg"
 done
 
+if [ "$SHELL" != "$(command -v zsh)" ]; then
+  chsh -s "$(command -v zsh)"
+fi
+
 if ! command -v zoxide > /dev/null 2>&1; then
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
