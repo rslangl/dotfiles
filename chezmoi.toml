@@ -1,0 +1,7 @@
+[external]
+  [external."nvim"]
+  type = "git"
+  url = "https://github.com/rslangl/nvim.git"
+  refreshPeriod = "168h" 
+  dest = "private_dot_config/nvim"
+
