@@ -5,6 +5,9 @@
 if [ ! -f /etc/profile.d/xdg_dirs.sh ]; then
   echo "Creating /etc/profile.d/xdg_dirs.sh with XDG base dir variables..."
 
+  mkdir /etc/profile.d
+  touch /etc/profile.d/xdg_dirs.sh
+
   cat <<'EOF' > /etc/profile.d/xdg_dirs.sh
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-\$HOME/.config}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-\$HOME/.cache}"
@@ -37,6 +40,8 @@ function install_with_pkg_mgr() {
     fi
   fi
 }
+
+echo "Installing packages managed by OS package manager..."
 
 for pkg in "${pkgs[@]}"; do
   install_with_pkg_mgr "$pkg"
