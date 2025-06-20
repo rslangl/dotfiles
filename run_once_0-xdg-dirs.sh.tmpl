@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Re-execute with sudo if not root
+
+if [ "$EUID" -ne 0 ]; then
+  echo "This script needs to be run as root. Re-executing with sudo..."
+  exec sudo "$0" "$@"
+fi
+
 # Sets up XDG dirs
 
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
