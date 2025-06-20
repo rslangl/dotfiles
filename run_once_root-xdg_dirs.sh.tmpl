@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Sets up XDG dirs
+
 if [ ! -f /etc/profile.d/xdg_dirs.sh ]; then
   echo "Creating /etc/profile.d/xdg_dirs.sh with XDG base dir variables..."
 
@@ -15,3 +17,27 @@ else
   echo "/etc/profile.d/xdg_dirs.sh already exists; skipping."
 fi
 
+# Installs packages available through the OS package manager
+
+OS_RELEASE=$(cat /etc/os-release)
+OS_ID=$(grep '^ID_LIKE=' /etc/os-release | cut -d= -f2- | tr -d '"')
+
+# TODO: associative array for distro differences
+pkgs=(dnf ripgrep curl wget gnupg make cmake tmux rlwrap keychain fzf jq fd)
+
+function install_with_pkg_mgr() {
+  
+  local ID_LIKE=$OS_ID
+  
+  if ! command -v $1 > /dev/null 2>&1; then
+    if echo "$ID_LIKE" | grep -qw "suse"; then
+      sudo zypper install $1
+    else
+      sudo apt install $1
+    fi
+  fi
+}
+
+for pkg in "${pkgs[@]}"; do
+  install_with_pkg_mgr "$pkg"
+done

@@ -1,33 +1,5 @@
 #!/bin/bash
 
-OS_RELEASE=$(cat /etc/os-release)
-OS_ID=$(grep '^ID_LIKE=' /etc/os-release | cut -d= -f2- | tr -d '"')
-
-# TODO: associative array for distro differences
-pkgs=(dnf ripgrep curl wget gnupg make cmake tmux rlwrap keychain fzf jq fd)
-
-function install_with_pkg_mgr() {
-  
-  if [[ "$#" -ne 1 ]]; then
-    echo "Error: one package name needed"
-    exit 1
-  fi
-
-  local ID_LIKE=$OS_ID
-  
-  if ! command -v $1 > /dev/null 2>&1; then
-    if echo "$ID_LIKE" | grep -qw "suse"; then
-      sudo zypper install $1
-    else
-      sudo apt install $1
-    fi
-  fi
-}
-
-for pkg in "${pkgs[@]}"; do
-  install_with_pkg_mgr "$pkg"
-done
-
 if [ "$SHELL" != "$(command -v zsh)" ]; then
   chsh -s "$(command -v zsh)"
 fi
