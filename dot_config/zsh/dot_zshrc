@@ -62,11 +62,10 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# utilities
+# integrations
 
-eval "$(zoxide init zsh)" > /dev/null 2>&1
-eval "$(keychain --absolute --dir $XDG_RUNTIME_DIR/keychain --eval github)"
-
-[ -f "$ZDOTDIR/integrations/fzf.zsh" ] && source "$ZDOTDIR/integrations/fzf.zsh"
+for file in "$ZDOTDIR/integrations"/*.zsh(N); do
+  source "$file"
+done
 
 . "${HOME}/.local/share/cargo/env"
