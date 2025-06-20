@@ -1,11 +1,17 @@
 #!/bin/sh
 
-cat <<'EOF' > /etc/profile.d/xdg_dirs.sh
+if [ ! -f /etc/profile.d/xdg_dirs.sh ]; then
+  echo "Creating /etc/profile.d/xdg_dirs.sh with XDG base dir variables..."
+
+  cat <<'EOF' > /etc/profile.d/xdg_dirs.sh
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-\$HOME/.config}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-\$HOME/.cache}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-\$HOME/.local/share}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-\$HOME/.local/state}"
 EOF
 
-chmod 644 /etc/profile.d/xdg_dirs.sh
+  chmod 644 /etc/profile.d/xdg_dirs.sh
+else
+  echo "/etc/profile.d/xdg_dirs.sh already exists; skipping."
+fi
 
