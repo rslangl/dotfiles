@@ -1,3 +1,21 @@
+# zinit
+# TODO: consider adding as submodule managed by chezmoi instead
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light Tarrasch/zsh-autoenv
+zinit light junegunn/fzf
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# completion and keybindings
+
+autoload -Uz compinit
+compinit
+
 # app-specifics
 
 export WGETRC="${XDG_CONFIG_HOME}"/wgetrc
@@ -61,23 +79,6 @@ export HISTFILE="$XDG_CONFIG_HOME"/zsh/history
 #)
 
 #source $ZSH/oh-my-zsh.sh
-
-# zinit
-
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light Tarrasch/zsh-autoenv
-zinit light junegunn/fzf
-
-# completion and keybindings
-
-autoload -Uz compinit
-compinit
 
 # integrations
 
