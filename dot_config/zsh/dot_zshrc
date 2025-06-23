@@ -71,21 +71,7 @@ alias cht.sh='cheat'
 
 # zsh
 
-#export ZSH="$ZDOTDIR/ohmyzsh"
 export HISTFILE="$XDG_CONFIG_HOME"/zsh/history
-
-#ZSH_THEME="bureau"
-#DISABLE_AUTO_UPDATE="true"
-
-#plugins=(
-#  git
-#  dotenv
-#  fzf
-#  zsh-autosuggestions
-#  zsh-syntax-highlighting
-#)
-
-#source $ZSH/oh-my-zsh.sh
 
 # integrations
 
