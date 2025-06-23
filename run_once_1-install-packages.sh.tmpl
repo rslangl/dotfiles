@@ -13,7 +13,7 @@ OS_RELEASE=$(cat /etc/os-release)
 OS_ID=$(grep '^ID_LIKE=' /etc/os-release | cut -d= -f2- | tr -d '"')
 
 # TODO: associative array for distro differences
-pkgs=(dnf ripgrep curl wget gnupg make cmake tmux rlwrap keychain fzf jq fd glow)
+pkgs=(dnf ripgrep curl wget gnupg make cmake tmux rlwrap fzf jq fd glow)
 
 function install_with_pkg_mgr() {
   
