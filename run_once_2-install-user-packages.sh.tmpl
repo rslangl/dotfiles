@@ -14,10 +14,10 @@ if ! command -v cht.sh > /dev/null 2>&1; then
 fi
 
 if ! command -v rustup > /dev/null 2>&1; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  export CARGO_HOME="$HOME/.local/share/cargo"
+  export RUSTUP_HOME="$HOME/.local/share/rustup"
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 fi
-
-# TODO: add keychain: https://github.com/funtoo/keychain/releases to ~/.local/bi
 
 if ! command -v keychain > /dev/null 2>&1; then
   curl -sSfL https://github.com/funtoo/keychain/releases/tag/2.9.5 --output ~/.local/bin/keychain
