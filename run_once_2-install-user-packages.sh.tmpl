@@ -20,8 +20,8 @@ if ! command -v rustup > /dev/null 2>&1; then
 fi
 
 if ! command -v keychain > /dev/null 2>&1; then
-  curl -sSfL https://github.com/funtoo/keychain/releases/tag/2.9.5 --output ~/.local/bin/keychain
-  chmod +x ~/.local/bin/keychain
+  curl -sL -o $HOME/.local/bin/keychain https://github.com/funtoo/keychain/releases/download/2.9.5/keychain
+  chmod +x $HOME/.local/bin/keychain
 fi
 
 if ! command -v fzf > /dev/null 2>&1; then

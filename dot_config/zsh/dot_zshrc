@@ -66,8 +66,9 @@ export SBT_OPTS="-Dsbt.global.base=${XDG_CONFIG_HOME}/sbt -Dsbt.boot.directory=$
 # aliases
 
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
-alias mvn='mvn -gs "${XDG_CONFIG_HOME}/maven/settings.xml'
+alias mvn='mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml'
 alias cht.sh='cheat'
+alias keychain='keychain --absolute --dir "$XDG_RUNTIME_DIR"/keychain'
 
 # zsh
 
