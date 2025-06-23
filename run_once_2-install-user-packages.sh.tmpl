@@ -24,6 +24,10 @@ if ! command -v keychain > /dev/null 2>&1; then
   chmod +x ~/.local/bin/keychain
 fi
 
+if ! command -v fzf > /dev/null 2>&1; then
+  curl -sSfL https://github.com/junegunn/fzf/releases/download/v0.62.0/fzf-0.62.0-linux_amd64.tar.gz | tar -xz -C ~/.local/bin
+fi
+
 # TODO: lstr, directory tree viewer (cargo crate install)
 
 # TODO: joshuto, file manager (git clone, cargo build)
