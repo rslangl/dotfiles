@@ -1,29 +1,36 @@
 #!/bin/bash
 
+set -euo pipefail
+
 sudo apt install -y \
 	dnf \
 	ripgrep \
-	curl \ 
+	curl \
 	wget \
 	gnupg \
 	make \
 	cmake \
 	tmux \
-	rlwrap \ 
+	rlwrap \
 	fzf \
 	jq \
-	fd \
 	glow \
 	keychain \
-	wezterm \
 	i3 \
 	i3lock \
 	zoxide \
-	zsh
+	zsh \
+	eza
+
+# Install wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg && \
+	echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list && \
+	sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg && \
+	sudo apt update && sudo apt install -y wezterm
 
 # Change login shell to zsh
 if [ "$SHELL" != "$(command -v zsh)" ]; then
-  chsh -s "$(command -v zsh)"
+  sudo chsh -s "$(command -v zsh)"
 fi
 
 # Use XDG dirs for completion and history files
@@ -32,7 +39,8 @@ HISTFILE="$XDG_STATE_HOME"/zsh/history
 [ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
 
 # Change default terminal emulator to wezterm
-# TODO
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/wezterm 50
+sudo update-alternatives --set x-terminal-emulator /usr/bin/wezterm
 
 # Change default window manager to i3
 # TODO
