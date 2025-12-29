@@ -39,7 +39,8 @@ HISTFILE="$XDG_STATE_HOME"/zsh/history
 [ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
 
 # Change default terminal emulator to wezterm
-# TODO
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/wezterm 50
+sudo update-alternatives --set x-terminal-emulator /usr/bin/wezterm
 
 # Change default window manager to i3
 # TODO
