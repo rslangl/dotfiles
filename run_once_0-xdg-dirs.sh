@@ -2,7 +2,7 @@
 
 set -e
 
-echo "Creating /etc/profile.d/xdg_dirs.sh with XDG base dir variables..."
+sudo echo "export ZDOTDIR="$HOME"/.config/zshenv"
 
 sudo mkdir -p /etc/profile.d
 sudo touch /etc/profile.d/xdg_dirs.sh
