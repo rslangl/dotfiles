@@ -33,9 +33,9 @@ curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/sh
 # Change login shell
 sudo chsh -s $(which zsh) "$USER"
 
-# Use XDG dirs for completion and history files
-[ -d "$XDG_STATE_HOME"/zsh ] || mkdir -p "$XDG_STATE_HOME"/zsh
-[ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
+# Create required directories
+mkdir -p "${XDG_STATE_HOME:-${HOME/.local/state}}"/zsh
+mkdir -p "${XDG_CACHE_HOME:-${HOME/.local/share}}"/zsh
 
 # Change default terminal emulator to wezterm
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/wezterm 50
