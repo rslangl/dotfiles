@@ -1,0 +1,8 @@
+set nocompatible
+set number
+set relativenumber
+set viminfofile=$XDG_STATE_HOME/vim/viminfo
+set tabstop=2
+set shiftwidth=2
+set colorcolumn=80
+set expandtab
