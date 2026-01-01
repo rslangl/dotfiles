@@ -32,6 +32,7 @@ alias keychain='keychain --absolute --dir $XDG_RUNTIME_DIR/keychain'
 
 # Custom integrations
 eval "$(zoxide init zsh)"
+eval "$(keychain --eval --agents ssh github)"
 
 # Set zim dirs
 ZIM_CONFIG_FILE="${XDG_CONFIG_HOME}"/zsh/zimrc
