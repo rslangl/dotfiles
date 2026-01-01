@@ -44,6 +44,7 @@ sudo chsh -s $(which zsh) "$USER"
 # Create required directories
 mkdir -p "${XDG_STATE_HOME:-${HOME/.local/state}}"/zsh
 mkdir -p "${XDG_CACHE_HOME:-${HOME/.local/share}}"/zsh
+mkdir -p "${XDG_CACHE_HOME:-${HOME/.local/share}}"/tig
 
 # Change default terminal emulator to wezterm
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which wezterm) 50
