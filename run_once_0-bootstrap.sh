@@ -68,7 +68,9 @@ SHARE_SEED="$HOME"/share/seed   # torrents
 SHARE_LECT="$HOME"/share/lect   # lectures
 
 ensure_dir() {
-  [[ -d "$1" ]] || mkdir -p "$1"
+	if [ ! -d "$1" ]; then
+		mkdir -p "$1"
+	fi
 }
 
 ensure_dir "$DEV"
@@ -87,4 +89,3 @@ ensure_dir "$SHARE_LECT"
 
 # Cleanup
 sudo apt autoremove -y
-rm -rf ~/Documents ~/Downloads ~/Templates ~/Videos ~/Pictures ~/Desktop ~/Music

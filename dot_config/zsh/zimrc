@@ -21,7 +21,7 @@ zmodule git
 # Makes it easier to opt-out of typos and dead ends in your shell history
 zmodule smite
 # Add utility aliases and functions. Adds color to ls, grep, and less
-zmodule utility
+#zmodule utility
 
 #
 # Themes
