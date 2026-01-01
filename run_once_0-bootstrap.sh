@@ -30,7 +30,10 @@ sudo apt install -y \
 	eza \
 	bat
 
-# TODO: install zoxide
+ZOXIDE_VERSION=0.9.8
+curl -fsSL "https://github.com/ajeetdsouza/zoxide/releases/download/v${ZOXIDE_VERSION}/zoxide_${ZOXIDE_VERSION}-1_amd64.deb" -o zoxide.deb && \
+	sudo dpkg -i zoxide.deb && \
+	rm zoxide.deb
 
 # Install wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg && \
@@ -45,6 +48,7 @@ sudo chsh -s $(which zsh) "$USER"
 mkdir -p "${XDG_STATE_HOME:-${HOME/.local/state}}"/zsh
 mkdir -p "${XDG_CACHE_HOME:-${HOME/.local/share}}"/zsh
 mkdir -p "${XDG_CACHE_HOME:-${HOME/.local/share}}"/tig
+mkdir -p "${XDG_CONFIG_HOME:-${HOME/.config}}"/git
 
 # Change default terminal emulator to wezterm
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which wezterm) 50
