@@ -20,7 +20,8 @@ sudo apt install -y \
 	i3lock \
 	zoxide \
 	zsh \
-	eza
+	eza \
+	bat
 
 # TODO: install zoxide
 
