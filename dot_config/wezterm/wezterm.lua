@@ -2,8 +2,9 @@ local wezterm = require 'wezterm'
 local config = {}
 
 config.font = wezterm.font 'JetBrains Mono'
+config.font_size = 10.0
 config.color_scheme = 'Catppuccin Mocha'
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.85
 config.keys = {
   {
     key = "T",
