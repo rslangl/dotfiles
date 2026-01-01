@@ -46,8 +46,8 @@ mkdir -p "${XDG_STATE_HOME:-${HOME/.local/state}}"/zsh
 mkdir -p "${XDG_CACHE_HOME:-${HOME/.local/share}}"/zsh
 
 # Change default terminal emulator to wezterm
-sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/wezterm 50
-sudo update-alternatives --set x-terminal-emulator /usr/bin/wezterm
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which wezterm) 50
+sudo update-alternatives --set x-terminal-emulator $(which wezterm)
 
 # Change default window manager to i3
 # TODO

@@ -18,9 +18,6 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep
 export MAVEN_OPTS=-Dmaven.repo.local="$XDG_DATA_HOME"/maven/repository
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc":"$XDG_CONFIG_HOME/gtk-2.0/gtkrc.mine"
 
-alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
-alias mvn='mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml'
-alias keychain='keychain --absolute --dir "$XDG_RUNTIME_DIR"/keychain'
 alias ls='eza --icons -l -T -a -L=1'
 alias cat='batcat'
 alias htop='btm'
