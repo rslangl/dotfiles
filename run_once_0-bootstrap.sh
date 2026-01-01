@@ -30,7 +30,10 @@ sudo apt install -y \
 	eza \
 	bat
 
-# TODO: install zoxide
+ZOXIDE_VERSION=0.9.8
+curl -fsSL "https://github.com/ajeetdsouza/zoxide/releases/download/v${ZOXIDE_VERSION}/zoxide_${ZOXIDE_VERSION}-1_amd64.deb" -o zoxide.deb && \
+	sudo dpkg -i zoxide.deb && \
+	rm zoxide.deb
 
 # Install wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg && \

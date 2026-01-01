@@ -30,6 +30,9 @@ alias mvn='mvn -gs $XDG_CONFIG_HOME/maven/settings.xml'
 alias nvidia-settings='nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings'
 alias keychain='keychain --absolute --dir $XDG_RUNTIME_DIR/keychain'
 
+# Custom integrations
+eval "$(zoxide init zsh)"
+
 # Set zim dirs
 ZIM_CONFIG_FILE="${XDG_CONFIG_HOME}"/zsh/zimrc
 ZIM_HOME=${ZDOTDIR:-${XDG_CACHE_HOME}}/zim
