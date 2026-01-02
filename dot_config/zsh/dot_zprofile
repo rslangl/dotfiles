@@ -1,0 +1,5 @@
+export XAUTHORITY="${XDG_RUNTIME_DIR}"/Xauthority
+
+# TODO: ensure ~/.local/bin in PATH
+
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx "${XDG_CONFIG_HOME:-${HOME}/.config}"/X11/xinitrc

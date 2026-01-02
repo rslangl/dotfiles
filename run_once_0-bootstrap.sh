@@ -2,12 +2,6 @@
 
 set -euo pipefail
 
-# Set required value path for ZDOTDIR
-sudo touch /etc/environment.d/zsh.conf
-sudo cat <<EOF | sudo tee /etc/environment.d/zsh.conf >/dev/null
-ZDOTDIR=$HOME/.config/zsh
-EOF
-
 # Install required packages
 sudo apt install -y \
 	dnf \
@@ -23,12 +17,29 @@ sudo apt install -y \
 	jq \
 	glow \
 	keychain \
+        xorg \
 	i3 \
 	i3lock \
+        dmenu \
 	zoxide \
 	zsh \
 	eza \
 	bat
+
+# Set XDG dirs for zsh
+sudo cp -f /etc/zsh/zshenv /etc/zsh/zshenv.bak
+
+sudo tee /tmp/zshenv.tmp >/dev/null <<'EOF'
+export ZDOTDIR="$HOME/.config/zsh"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+sudo cmp -s /tmp/zhsenv.tmp /etc/zsh/zshenv || \
+  sudo install -m 0644 /tmp/zshenv.tmp /etc/zsh/zshenv
+
+rm /tmp/zshenv.tmp
 
 ZOXIDE_VERSION=0.9.8
 curl -fsSL "https://github.com/ajeetdsouza/zoxide/releases/download/v${ZOXIDE_VERSION}/zoxide_${ZOXIDE_VERSION}-1_amd64.deb" -o zoxide.deb && \
