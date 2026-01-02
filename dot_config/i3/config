@@ -66,6 +66,10 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+# cycle focus
+bindsym $mod+Tab focus next
+bindsym $mod+Shift+Tab focus prev
+
 # move focused window
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
