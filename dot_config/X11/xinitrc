@@ -3,6 +3,6 @@ USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
 ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
 ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
-picom &
+picom --backend xrender -b
 
 exec i3
