@@ -22,6 +22,7 @@ sudo apt install -y \
 	i3lock \
         dmenu \
         nitrogen \
+        picom \
 	zoxide \
 	zsh \
 	eza \
