@@ -21,6 +21,8 @@ sudo apt install -y \
 	i3 \
 	i3lock \
         dmenu \
+        nitrogen \
+        picom \
 	zoxide \
 	zsh \
 	eza \
@@ -57,9 +59,10 @@ sudo chsh -s $(which zsh) "$USER"
 
 # Create required directories
 mkdir -p "${XDG_STATE_HOME:-${HOME/.local/state}}"/zsh
-mkdir -p "${XDG_CACHE_HOME:-${HOME/.local/share}}"/zsh
-mkdir -p "${XDG_CACHE_HOME:-${HOME/.local/share}}"/tig
+mkdir -p "${XDG_CACHE_HOME:-${HOME/.cache}}"/zsh
+mkdir -p "${XDG_CACHE_HOME:-${HOME/.cache}}"/tig
 mkdir -p "${XDG_CONFIG_HOME:-${HOME/.config}}"/git
+mkdir -p "${XDG_DATA_HOME:-${HOME/.local/share}}"/wallpapers
 
 # Change default terminal emulator to wezterm
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which wezterm) 50
