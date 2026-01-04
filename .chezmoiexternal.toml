@@ -2,3 +2,7 @@
   type = "git-repo"
   url = "https://github.com/rslangl/nvim.git"
   refreshPeriod = "168h"
+["dev/co/neovim"]
+  type = "git-repo"
+  url = "https://github.com/neovim/neovim.git"
+  refreshPeriod = "168h"
