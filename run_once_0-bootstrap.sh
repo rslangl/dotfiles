@@ -26,7 +26,9 @@ sudo apt install -y \
 	zoxide \
 	zsh \
 	eza \
-	bat
+	bat \
+        fd-find \
+        weechat
 
 # Set XDG dirs for zsh
 sudo cp -f /etc/zsh/zshenv /etc/zsh/zshenv.bak
@@ -104,7 +106,9 @@ ensure_dir "$SHARE_SEED"
 ensure_dir "$SHARE_LECT"
 
 # Compile nvim
+NVIM_VERSION=0.11
 pushd "$HOME"/dev/co/neovim
+git checkout release-"$NVIM_VERSION"
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 popd
