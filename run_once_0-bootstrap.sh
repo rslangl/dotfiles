@@ -26,7 +26,9 @@ sudo apt install -y \
 	zoxide \
 	zsh \
 	eza \
-	bat
+	bat \
+        fd-find \
+        weechat
 
 # Set XDG dirs for zsh
 sudo cp -f /etc/zsh/zshenv /etc/zsh/zshenv.bak
@@ -68,9 +70,6 @@ mkdir -p "${XDG_DATA_HOME:-${HOME/.local/share}}"/wallpapers
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which wezterm) 50
 sudo update-alternatives --set x-terminal-emulator $(which wezterm)
 
-# Change default window manager to i3
-# TODO
-
 # Set custom user directories
 DEV="$HOME"/dev
 DEV_CO="$DEV"/co  # checkout other projects
@@ -105,6 +104,14 @@ ensure_dir "$DOCS_LANG"
 ensure_dir "$SHARE_CAST"
 ensure_dir "$SHARE_SEED"
 ensure_dir "$SHARE_LECT"
+
+# Compile nvim
+NVIM_VERSION=0.11
+pushd "$HOME"/dev/co/neovim
+git checkout release-"$NVIM_VERSION"
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+popd
 
 # Cleanup
 sudo apt autoremove -y
